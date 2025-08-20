@@ -46,14 +46,11 @@ pipeline {
         bat("C:\\Users\\gunto\\Desktop\\DevSecOps\\ZAP_2.16.0\\zap.sh -port 9393 -cmd -quickurl https://www.example.com -quickprogress -quickout C:\\Users\\gunto\\Desktop\\DevSecOps\\ZAP_2.16.0\\Output.html")
       }
     }
-    stage('insatll Checkov') {
-      steps {
-        bat("pip install checkov")
-      }
-    }
+
     stage('checkov') {
       steps {
-        bat("checkov -s -f main.tf")
+       bat( """SET PATH=C:\\Users\\gunto\\AppData\\Local\\Programs\\Python\\Python312\\;C:\\Users\\gunto\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\;%PATH%
+        checkov.cmd -s -f main.tf""")
       }
     }
 
